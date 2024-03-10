@@ -1,0 +1,1 @@
+2024-03-10 14:39:56 - Operación: resta - Resultado: 1.0
