@@ -9,12 +9,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GestorUsuarios {
+
     private static final String FILE_PATH = "credenciales.json";
     private static Map<String, String> credenciales = cargarCredenciales();
 
     private static Map<String, String> cargarCredenciales() {
         try (FileReader reader = new FileReader(FILE_PATH)) {
-            Type type = new TypeToken<Map<String, String>>() {}.getType();
+            Type type = new TypeToken<Map<String, String>>() {
+            }.getType();
             return new Gson().fromJson(reader, type);
         } catch (FileNotFoundException e) {
             return new HashMap<>();
@@ -27,8 +29,11 @@ public class GestorUsuarios {
     private static void guardarCredenciales() {
         try (FileWriter writer = new FileWriter(FILE_PATH)) {
             new Gson().toJson(credenciales, writer);
+        } catch (FileNotFoundException e) {
+            System.out.println("Error al encontrar el archivo");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error al guardar las credenciales.");
+                    
         }
     }
 
@@ -42,7 +47,6 @@ public class GestorUsuarios {
         if (credenciales.containsKey(usuario) && credenciales.get(usuario).equals(contrasena)) {
             return true;
         } else {
-            System.out.println("Los datos de inicio de sesión no son correctos. Vuelve a intentarlo.");
             return false;
         }
     }

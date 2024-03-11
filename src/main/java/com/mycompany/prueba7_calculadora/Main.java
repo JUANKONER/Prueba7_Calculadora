@@ -10,7 +10,7 @@ public class Main {
         do {
             System.out.print("¿Es un usuario nuevo? (si o no)");
             String eleccion = InputOutput.leerString();
-            if (eleccion.toLowerCase().equals("si")) {
+            if (eleccion.toLowerCase().equals("si") || eleccion.toLowerCase().equals("s")) {
                 System.out.print("Ingrese su nombre de usuario para registrarse: ");
                 String usuario = InputOutput.leerString();
                 System.out.print("Ingrese su contraseña: ");
